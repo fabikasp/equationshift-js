@@ -1,0 +1,113 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    background-color: #C0C0C0;
+}
+
+div {
+    justify-content: center;
+}
+
+ul {
+    border: solid 2px #4169E1;
+    height: 2.5em;
+    margin-bottom: 0;
+}
+
+#right-equation-part-ul, #left-equation-part-ul {
+    border-top-left-radius: 0.2em;
+    border-top-right-radius: 0.2em;
+}
+
+#container-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#center-div {
+    width: 95%;
+    background-color: #C0C0C0;
+}
+
+@media screen and (min-width: 576px) {
+    body {
+        background-color: #808080;
+    }
+
+    #container-div {
+        height: 100%;
+    }
+
+    #center-div {
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    }
+}
+
+#help-button {
+    color: white;
+    background-color: black;
+    border-color: black;
+    width: 22%;
+}
+
+#start-button {
+    color: white;
+    background-color: #4169E1;
+    border-color: #4169E1;
+    width: 22%;
+}
+
+#eval-button {
+    color: white;
+    background-color: black;
+    border-color: black;
+    width: 35%;
+}
+
+#close-button {
+    color: white;
+    background-color: black;
+    border-color: black;
+    width: 35%;
+}
+
+#inner-container-div {
+    font-size: 35px;
+    margin-top: 0.7em;
+}
+
+div.fraction {
+    font-size: 25px;
+}
+
+#division-zone-separator {
+    visibility: hidden;
+}
+
+#first-division-zone-ul, #second-division-zone-ul {
+    height: 0.825em;
+    border-bottom-left-radius: 0.2em;
+    border-bottom-right-radius: 0.2em;
+    border-top: 1em;
+}
+
+#right-equation-part-ul[data-tooltip]:before, #left-equation-part-ul[data-tooltip]:before {
+    background-color: white;
+    color: #4169E1;
+    bottom: 190px;
+}
+
+div.modal-body span {
+    font-size: 18px;
+}
+
+div.modal-body span.headline {
+    font-weight: bold;
+}
+
+#checkbox-container {
+    margin-right: 2.4%;
+}

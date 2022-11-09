@@ -1,0 +1,43 @@
+/*!
+  * equationshift-js (https://gitlab.imn.htwk-leipzig.de/fkaspare/equationshift-js)
+  * Copyright Fabian Kasparek (https://gitlab.imn.htwk-leipzig.de/fkaspare)
+  * Licensed under GNU General Public License v3.0 (https://gitlab.imn.htwk-leipzig.de/fkaspare/equationshift-js/-/blob/main/LICENSE)
+  */
+#right-equation-part-ul, #left-equation-part-ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+li { /* has to be unspecific to remove the list point at list items */
+    display: inline;
+}
+
+#right-equation-part-ul[data-tooltip]:before, #left-equation-part-ul[data-tooltip]:before { 
+    content: attr(data-tooltip); 
+    background-color: black; 
+    color: white; 
+    border-radius: 0.1em; 
+    text-align: center; 
+    bottom: 100px; 
+    position: absolute; 
+}
+
+#right-equation-part-ul div.fraction, 
+#right-equation-part-ul span.numerator, 
+#right-equation-part-ul span.denominator,
+#left-equation-part-ul div.fraction, 
+#left-equation-part-ul span.numerator, 
+#left-equation-part-ul span.denominator {
+    padding: 0 5px;
+}
+
+#right-equation-part-ul div.fraction, #left-equation-part-ul div.fraction {
+    display: inline-block;
+    text-align: center;    
+}
+
+#right-equation-part-ul span.denominator, #left-equation-part-ul span.denominator { 
+    border-top: 1px solid black;
+    display: block;
+}

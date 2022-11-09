@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>EquationShiftWebApplication</title>
+
+    <link href="./src/stylesheets/dependencies/bootstrap.min.css" rel="stylesheet">
+    <link href="./src/stylesheets/dependencies/dragula.min.css" rel="stylesheet">
+    <link href="./src/stylesheets/dependencies/equationshift.min.css" rel="stylesheet">
+    <link href="./src/stylesheets/index.css" rel="stylesheet">
+
+    <script src="./src/scripts/dependencies/jquery.min.js"></script>
+    <script src="./src/scripts/dependencies/popper.min.js"></script>
+    <script src="./src/scripts/dependencies/bootstrap.min.js"></script>
+    <script src="./src/scripts/dependencies/dragula.min.js"></script>
+    <script src="./src/scripts/dependencies/math.min.js"></script>
+    <script src="./src/scripts/dependencies/nerdamer.min.js"></script>
+    <script src="./src/scripts/dependencies/equationshift.min.js"></script>
+    <script src="./src/scripts/index.js"></script>
+</head>
+<body>
+    <div id="container-div">
+        <div id="center-div">
+            <div class="row mt-4">
+                <input type="text" id="left-equation-part-input" class="col-md-5 col-10 mr-1 form-control" placeholder="Linker Teil der Gleichung" />
+                <input type="text" id="right-equation-part-input" class="col-md-5 col-10 mr-1 form-control" placeholder="Rechter Teil der Gleichung" />
+                <input type="text" id="target-variable-input" class="col-md-1 col-10 mr-1 form-control" placeholder="Zielvariable" />
+            </div>
+            <div class="row">
+                <div id="checkbox-container" class="col-md-11 col-10">
+                    <label class="checkbox-inline"><input id="supportive-mode-checkbox" class="mr-1" type="checkbox" value="">Unterstützender Modus</label>
+                    <label class="checkbox-inline"><input id="group-tokens-checkbox" class="mr-1" type="checkbox" value="">Zusammenhängende Ausdrücke gruppieren</label>
+                    <label class="checkbox-inline"><input id="auto-simplification-checkbox" class="mr-1" type="checkbox" value="">Automatische Simplifizierung</label>
+                    <label class="checkbox-inline"><input id="lock-when-solved-checkbox" class="mr-1" type="checkbox" value="">Gelöste Gleichung sperren</label>
+                    <label class="checkbox-inline"><input id="preview-checkbox" class="mr-1" type="checkbox" value="">Preview</label>
+                    <label class="checkbox-inline"><input id="prettify-fractions-checkbox" class="mr-1" type="checkbox" value="">Horizontale Bruchstriche</label>
+                </div>
+            </div>
+            <div class="row mb-3 mt-3">
+                <button type="button" id="help-button" class="btn mr-3">Hilfe</button>
+                <button type="button" id="start-button" class="btn">Starten</button>
+            </div>
+            <div id="inner-container-div" class="row">
+                <div class="col-md-5 col-10">
+                    <ul id="left-equation-part-ul"></ul>
+                    <ul id="first-division-zone-ul"></ul>
+                </div>
+                <div class="col-md-1 col-10 mt-md-3 text-center">
+                    <span>=</span>
+                </div>
+                <div class="col-md-5 col-10">
+                    <ul id="right-equation-part-ul"></ul>
+                    <ul id="second-division-zone-ul"></ul>
+                </div>
+            </div>
+            <div class="row mb-3 mt-3">
+                <button type="button" id="eval-button" class="btn">Auswertung</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="help-modal">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100">Hilfe</h4>
+                </div>
+                <div class="modal-body">
+                    <span>• Umformungsschritte werden durch Drag and Drop von Ausdrücken gebildet</span><br>
+                    <span>• automatische Invertierung von Operatoren</span><br>
+                    <span>• automatische Verkettung von Ausdrücken (5*x*y wird zu -5*x*y unabhängig davon, welcher Teilausdruck bewegt wird)</span><br>
+                    <span>• ein Ausdruck wird auf beiden Gleichungsseiten unverkettet dividiert, wenn er in eine Divisionszone gezogen wird</span><br>
+                    <span>• Funktionen und Potenzen können durch einen Klick invertiert werden (z.B. Klick auf sqrt(x) wendet quadratische Potenz an)</span><br>
+                    <span>• Ausdrücke auf einer Gleichungsseite werden durch das Ziehen eines Ausdrucks neben einen anderen manuell simplifiziert</span><br><br>
+                    <span class="headline">Unterstützender Modus: </span><span>
+                        Die Gleichungsvalidität wird automatisch sichergestellt und Umformungsschritte werden unabhängig von der Stelle, an der ein Ausdruck platziert wird,
+                        automatisch in die Gleichung eingepflegt. Andernfalls muss der Benutzer die Gleichungsvalidität und die korrekte Ausdrucksplatzierung sicherstellen. 
+                    </span><br><br>
+                    <span class="headline">Zusammenhängende Ausdrücke gruppieren: </span><span>
+                        Klammern und Funktionen werden als zusammenhängende Ausdrücke bereitgestellt, sodass deren Teilausdrücke nicht separat behandelbar sind. Andernfalls
+                        können sämtliche Teilausdrücke der Gleichung bewegt werden.
+                    </span><br><br>
+                    <span class="headline">Automatische Simplifizierung: </span><span>
+                        Getätigte Umformungsschritte werden automatisch mit der Gleichung verrechnet. Andernfalls muss dies manuell durchgeführt werden.
+                    </span><br><br>
+                    <span class="headline">Gelöste Gleichung sperren: </span><span>
+                        Nachdem die Gleichung erfolgreich gelöst wurde, sind keine weiteren Aktionen mehr möglich.
+                    </span><br><br>
+                    <span class="headline">Preview: </span><span>
+                        In Pop-up-Fenstern wird eine Vorschau der Gleichung, die aus der Anwendung eines Umformungsschritts resultieren würde, angezeigt.
+                    </span><br><br>
+                    <span class="headline">Horizontale Bruchstriche: </span><span>
+                        Brüche werden mit einem horizontalen statt mit einem diagonalen Bruchstrich dargestellt.
+                    </span>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button id="close-button" type="button" class="btn btn-danger" data-dismiss="modal">Schließen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+      
+    <div class="modal" id="eval-modal">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100">Auswertung</h4>
+                </div>
+                <div class="modal-body">
+                    <span class="headline">Korrekte Ergebnisse: </span><span id="correct-results"></span><br>
+                    <span class="headline">Tatsächliches Ergebnis: </span><span id="result"></span><br>
+                    <span class="headline">Benötigte Anzahl an Schritten: </span><span id="step-amount"></span><br>
+                    <span class="headline">Durchgeführte Schritte: </span><span id="steps"></span>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button id="close-button" type="button" class="btn btn-danger" data-dismiss="modal">Schließen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
