@@ -1,6 +1,6 @@
 # equationshift-js
 
-`equationshift-js` ist ein JavaScript-Framework, durch dessen Integration in eine beliebige Webapplikation, mathematische Gleichungen
+`equationshift-js` ist ein JavaScript-Framework, durch dessen Integration in eine beliebige Webapplikation mathematische Gleichungen
 mittels Gestensteuerung gelöst werden können.
 
 ## Verwendung
