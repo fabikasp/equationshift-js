@@ -5,7 +5,7 @@ mittels Gestensteuerung gelöst werden können.
 
 ## Verwendung
 
-- Umformungsschritte werden durch Drag and Drop von Ausdrücken gebildet
+- Umformungsschritte werden durch Drag and Drop von Ausdrücken oder Eingaben in das entsprechende Eingabefeld gebildet
   - automatische Invertierung von Operatoren
   - automatische Verkettung von Ausdrücken (`5*x*y` wird zu `-5*x*y` unabhängig davon, welcher Teilausdruck bewegt wird)
   - im unterstützenden Modus ist die Stelle, an der ein Ausdruck platziert wird, irrelevant, da der getätigte Umformungsschritt
