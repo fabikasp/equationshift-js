@@ -1,8 +1,8 @@
 /*!
-  * equationshift-js (https://gitlab.imn.htwk-leipzig.de/fkaspare/equationshift-js)
-  * Copyright Fabian Kasparek (https://gitlab.imn.htwk-leipzig.de/fkaspare)
-  * Licensed under GNU General Public License v3.0 (https://gitlab.imn.htwk-leipzig.de/fkaspare/equationshift-js/-/blob/main/LICENSE)
-  */
+  * equationshift-js (https://github.com/fabikasp/equationshift-js)
+  * Copyright Fabian Kasparek (https://github.com/fabikasp)
+  * Licensed under GNU General Public License v3.0 (https://github.com/fabikasp/equationshift-js/blob/main/LICENSE)
+  */ 
 #right-equation-part-ul, #left-equation-part-ul {
     display: flex;
     align-items: center;

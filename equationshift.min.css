@@ -1,6 +1,6 @@
 /*!
-  * equationshift-js (https://gitlab.imn.htwk-leipzig.de/fkaspare/equationshift-js)
-  * Copyright Fabian Kasparek (https://gitlab.imn.htwk-leipzig.de/fkaspare)
-  * Licensed under GNU General Public License v3.0 (https://gitlab.imn.htwk-leipzig.de/fkaspare/equationshift-js/-/blob/main/LICENSE)
+  * equationshift-js (https://github.com/fabikasp/equationshift-js)
+  * Copyright Fabian Kasparek (https://github.com/fabikasp)
+  * Licensed under GNU General Public License v3.0 (https://github.com/fabikasp/equationshift-js/blob/main/LICENSE)
   */
 #left-equation-part-ul,#right-equation-part-ul{display:flex;align-items:center;justify-content:center}li{display:inline}#left-equation-part-ul[data-tooltip]:before,#right-equation-part-ul[data-tooltip]:before{content:attr(data-tooltip);background-color:#000;color:#fff;border-radius:.1em;text-align:center;bottom:100px;position:absolute}#left-equation-part-ul div.fraction,#left-equation-part-ul span.denominator,#left-equation-part-ul span.numerator,#right-equation-part-ul div.fraction,#right-equation-part-ul span.denominator,#right-equation-part-ul span.numerator{padding:0 5px}#left-equation-part-ul div.fraction,#right-equation-part-ul div.fraction{display:inline-block;text-align:center}#left-equation-part-ul span.denominator,#right-equation-part-ul span.denominator{border-top:1px solid #000;display:block}
