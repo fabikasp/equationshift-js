@@ -29,6 +29,19 @@ $(document).ready(function () {
         }
     });
 
+    $("#conversion-step-button").on("click", function (event) {
+        const conversionStepInput = $("#conversion-step-input");
+        if (conversionStepInput.val() === "") { /* conversion step is empty */
+            alert("Es wurde kein Umformungsschritt angegeben.");
+
+            return;
+        }
+
+        EquationShiftAPI.executeConversionStep(conversionStepInput.val());
+
+        conversionStepInput.val("");
+    });
+
     $("#eval-button").on("click", function (event) {
         if (!EquationShiftAPI.equationIsSolved()) { /* evaluation is possible when the equation is solved */
             alert("Bitte lösen Sie zunächst die Gleichung.");

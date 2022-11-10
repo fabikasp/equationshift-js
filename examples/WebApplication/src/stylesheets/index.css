@@ -10,6 +10,10 @@ div {
     justify-content: center;
 }
 
+input {
+    text-align: center;
+}
+
 ul {
     border: solid 2px #4169E1;
     height: 2.5em;
@@ -60,18 +64,25 @@ ul {
     width: 22%;
 }
 
+#conversion-step-button {
+    color: white;
+    background-color: #4169E1;
+    border-color: #4169E1;
+    width: 38%;
+}
+
 #eval-button {
     color: white;
     background-color: black;
     border-color: black;
-    width: 35%;
+    width: 38%;
 }
 
 #close-button {
     color: white;
     background-color: black;
     border-color: black;
-    width: 35%;
+    width: 38%;
 }
 
 #inner-container-div {
@@ -97,7 +108,6 @@ div.fraction {
 #right-equation-part-ul[data-tooltip]:before, #left-equation-part-ul[data-tooltip]:before {
     background-color: white;
     color: #4169E1;
-    bottom: 190px;
 }
 
 div.modal-body span {

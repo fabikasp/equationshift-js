@@ -56,6 +56,12 @@
                 </div>
             </div>
             <div class="row mb-3 mt-3">
+                <input type="text" id="conversion-step-input" class="col-md-5 col-9 mr-1 form-control" placeholder="Umformungsschritt" />
+            </div>
+            <div class="row mb-3 mt-3">
+                <button type="button" id="conversion-step-button" class="btn">Umformungsschritt anwenden</button>
+            </div>
+            <div class="row mb-3 mt-3">
                 <button type="button" id="eval-button" class="btn">Auswertung</button>
             </div>
         </div>
@@ -68,7 +74,7 @@
                     <h4 class="modal-title w-100">Hilfe</h4>
                 </div>
                 <div class="modal-body">
-                    <span>• Umformungsschritte werden durch Drag and Drop von Ausdrücken gebildet</span><br>
+                    <span>• Umformungsschritte werden durch Drag and Drop von Ausdrücken oder Eingaben in das entsprechende Eingabefeld gebildet</span><br>
                     <span>• automatische Invertierung von Operatoren</span><br>
                     <span>• automatische Verkettung von Ausdrücken (5*x*y wird zu -5*x*y unabhängig davon, welcher Teilausdruck bewegt wird)</span><br>
                     <span>• ein Ausdruck wird auf beiden Gleichungsseiten unverkettet dividiert, wenn er in eine Divisionszone gezogen wird</span><br>

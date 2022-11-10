@@ -1330,6 +1330,33 @@ const EquationShiftAPI = Object.freeze({ /* API functions */
   getExecutedEquationConversions: () => { /* returns the corresponding state */
     return EquationShift.state.executedEquationConversions;
   },
+
+  executeConversionStep: (conversionStep) => { /* takes an independent conversion step as string and executes it */
+    if (EquationShift.equationShiftConfig.lockWhenSolved && EquationShift.equationIsSolved()) { /* cancel when equation environment is locked */
+      return;
+    }
+
+    const leftEquationPartUl = $("#" + EquationShift.containers.LEFT_EQUATION_PART_UL);
+    const rightEquationPartUl = $("#" + EquationShift.containers.RIGHT_EQUATION_PART_UL);
+
+    let leftEquationPart = EquationShift.convertListItemsToString(EquationShift.bringUlChildrenIntoProcessableFormat(leftEquationPartUl.children()));
+    let rightEquationPart = EquationShift.convertListItemsToString(EquationShift.bringUlChildrenIntoProcessableFormat(rightEquationPartUl.children()));
+
+    let newLeftEquationPart = EquationShift.mathSymbols.OPENING_BRACKET + leftEquationPart + EquationShift.mathSymbols.CLOSING_BRACKET + conversionStep;
+    let newRightEquationPart = EquationShift.mathSymbols.OPENING_BRACKET + rightEquationPart + EquationShift.mathSymbols.CLOSING_BRACKET + conversionStep;
+    if (EquationShift.equationShiftConfig.autoSimplification) {
+      newLeftEquationPart = EquationShift.equationShiftConfig.simplifyEquationShiftExpression(newLeftEquationPart);
+      newRightEquationPart = EquationShift.equationShiftConfig.simplifyEquationShiftExpression(newRightEquationPart);
+    } else {
+      newLeftEquationPart = EquationShift.removeChainedOperators(newLeftEquationPart);
+      newRightEquationPart = EquationShift.removeChainedOperators(newRightEquationPart);
+    }
+
+    leftEquationPartUl.empty();
+    EquationShift.buildListItemsByMathExpression(newLeftEquationPart, leftEquationPartUl);
+    rightEquationPartUl.empty();
+    EquationShift.buildListItemsByMathExpression(newRightEquationPart, rightEquationPartUl);
+  }
 });
 
 $(document).ready(function () {
@@ -1413,7 +1440,6 @@ $(document).ready(function () {
   });
 
   drake.on("drop", function (el, target, source, sibling) { /* when list item is dropped in left or right drag and drop container */
-    console.log(target);
     try {
       const dragAndDropData = EquationShift.handleRestructuringEvent(el, target, source, true); /* handle restructuring event with logging */
 
