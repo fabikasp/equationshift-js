@@ -5,7 +5,7 @@ mittels Gestensteuerung gelöst werden können.
 
 ## Verwendung
 
-- Umformungsschritte werden durch Drag and Drop von Ausdrücken oder Eingaben in das entsprechende Eingabefeld gebildet
+- Umformungsschritte werden durch Drag and Drop von Ausdrücken oder individuell getätigte Eingaben gebildet
   - automatische Invertierung von Operatoren
   - automatische Verkettung von Ausdrücken (`5*x*y` wird zu `-5*x*y` unabhängig davon, welcher Teilausdruck bewegt wird)
   - im unterstützenden Modus ist die Stelle, an der ein Ausdruck platziert wird, irrelevant, da der getätigte Umformungsschritt
@@ -193,6 +193,11 @@ Bei Bedarf müssen die untenstehenden Keys und deren Values in das `equationShif
     <td>EquationShiftAPI.getExecutedEquationConversions()</td>
     <td>Object[]</td>
     <td>Gibt die vom Benutzer durchgeführten Umformungsschritte aus</td>
+  </tr>
+  <tr>
+    <td>EquationShiftAPI.executeConversionStep(conversionStep)</td>
+    <td>-</td>
+    <td>Wendet einen als String übergebenen Umformungsschritt auf beide Gleichungsseiten an</td>
   </tr>
 </table>
 
