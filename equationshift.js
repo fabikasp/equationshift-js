@@ -1336,23 +1336,35 @@ const EquationShiftAPI = Object.freeze({ /* API functions */
       return;
     }
 
+    if (conversionStep === "") { /* cancel when conversion step is empty */
+      return;
+    }
+
     const leftEquationPartUl = $("#" + EquationShift.containers.LEFT_EQUATION_PART_UL);
     const rightEquationPartUl = $("#" + EquationShift.containers.RIGHT_EQUATION_PART_UL);
 
     let leftEquationPart = EquationShift.convertListItemsToString(EquationShift.bringUlChildrenIntoProcessableFormat(leftEquationPartUl.children()));
     let rightEquationPart = EquationShift.convertListItemsToString(EquationShift.bringUlChildrenIntoProcessableFormat(rightEquationPartUl.children()));
 
-    let newLeftEquationPart = EquationShift.mathSymbols.OPENING_BRACKET + leftEquationPart + EquationShift.mathSymbols.CLOSING_BRACKET + conversionStep;
-    let newRightEquationPart = EquationShift.mathSymbols.OPENING_BRACKET + rightEquationPart + EquationShift.mathSymbols.CLOSING_BRACKET + conversionStep;
+    let newLeftEquationPart = null;
+    let newRightEquationPart = null;
+    if ([EquationShift.mathSymbols.ADD, EquationShift.mathSymbols.SUB].includes(conversionStep.charAt(0))) {
+      newLeftEquationPart = leftEquationPart + conversionStep; /* no brackets when first operator is add or sub */
+      newRightEquationPart = rightEquationPart + conversionStep;
+    } else { /* brackets when first operator is something like mul or div */
+      newLeftEquationPart = EquationShift.mathSymbols.OPENING_BRACKET + leftEquationPart + EquationShift.mathSymbols.CLOSING_BRACKET + conversionStep;
+      newRightEquationPart = EquationShift.mathSymbols.OPENING_BRACKET + rightEquationPart + EquationShift.mathSymbols.CLOSING_BRACKET + conversionStep;
+    }
+
     if (EquationShift.equationShiftConfig.autoSimplification) {
       newLeftEquationPart = EquationShift.equationShiftConfig.simplifyEquationShiftExpression(newLeftEquationPart);
       newRightEquationPart = EquationShift.equationShiftConfig.simplifyEquationShiftExpression(newRightEquationPart);
-    } else {
+    } else { /* only remove chained operators when auto simplification is disabled */
       newLeftEquationPart = EquationShift.removeChainedOperators(newLeftEquationPart);
       newRightEquationPart = EquationShift.removeChainedOperators(newRightEquationPart);
     }
 
-    leftEquationPartUl.empty();
+    leftEquationPartUl.empty(); /* refill equation part uls */
     EquationShift.buildListItemsByMathExpression(newLeftEquationPart, leftEquationPartUl);
     rightEquationPartUl.empty();
     EquationShift.buildListItemsByMathExpression(newRightEquationPart, rightEquationPartUl);
