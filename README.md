@@ -197,7 +197,7 @@ Bei Bedarf müssen die untenstehenden Keys und deren Values in das `equationShif
   <tr>
     <td>EquationShiftAPI.executeConversionStep(conversionStep)</td>
     <td>-</td>
-    <td>Wendet einen als String übergebenen Umformungsschritt auf beide Gleichungsseiten an</td>
+    <td>Wendet einen als String übergebenen Umformungsschritt auf beide Gleichungsseiten an und wirft `Error` bei fehlgeschlagener Anwendung des Umformungsschritts</td>
   </tr>
 </table>
 

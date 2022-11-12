@@ -31,13 +31,11 @@ $(document).ready(function () {
 
     $("#conversion-step-button").on("click", function (event) {
         const conversionStepInput = $("#conversion-step-input");
-        if (conversionStepInput.val() === "") { /* conversion step is empty */
-            alert("Es wurde kein Umformungsschritt angegeben.");
-
-            return;
+        try {
+            EquationShiftAPI.executeConversionStep(conversionStepInput.val());
+        } catch (e) { /* processing errors */
+            alert(e.message);
         }
-
-        EquationShiftAPI.executeConversionStep(conversionStepInput.val());
 
         conversionStepInput.val("");
     });

@@ -1332,16 +1332,20 @@ const EquationShiftAPI = Object.freeze({ /* API functions */
   },
 
   executeConversionStep: (conversionStep) => { /* takes an independent conversion step as string and executes it */
-    if (EquationShift.equationShiftConfig.lockWhenSolved && EquationShift.equationIsSolved()) { /* cancel when equation environment is locked */
-      return;
+    if (EquationShift.equationShiftConfig.lockWhenSolved && EquationShift.equationIsSolved()) { /* throw error when solution environment is locked */
+      throw new Error("The solution environment is locked");
     }
 
-    if (conversionStep === "") { /* cancel when conversion step is empty */
-      return;
+    if (typeof conversionStep !== "string" || conversionStep === "") { /* throw error when conversion step is empty or invalid */
+      throw new Error("The conversion step must be a string and not empty");
     }
 
     const leftEquationPartUl = $("#" + EquationShift.containers.LEFT_EQUATION_PART_UL);
     const rightEquationPartUl = $("#" + EquationShift.containers.RIGHT_EQUATION_PART_UL);
+
+    if (leftEquationPartUl.children().length === 0 || rightEquationPartUl.children().length === 0) { /* throw error when equation is empty */
+      throw new Error("There is no equation to process");
+    }
 
     let leftEquationPart = EquationShift.convertListItemsToString(EquationShift.bringUlChildrenIntoProcessableFormat(leftEquationPartUl.children()));
     let rightEquationPart = EquationShift.convertListItemsToString(EquationShift.bringUlChildrenIntoProcessableFormat(rightEquationPartUl.children()));
